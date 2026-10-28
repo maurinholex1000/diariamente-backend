@@ -1,0 +1,61 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ===== Entornos virtuales =====
+venv/
+.venv/
+env/
+ENV/
+
+# ===== Variables de entorno y secretos =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+serviceAccountKey.json
+firebase-service-account.json
+
+# ===== Base de datos local =====
+*.sqlite3
+*.db
+*.db-journal
+
+# ===== Logs =====
+*.log
+logs/
+
+# ===== Reportes generados (PDFs) =====
+reports/
+*.pdf
+
+# ===== Testing =====
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ===== IDE / Editor =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== Sistema operativo =====
+.DS_Store
+Thumbs.db
+
+# ===== Modelos de IA =====
+models/
+*.bin
+*.pt
+*.pth
+*.onnx
