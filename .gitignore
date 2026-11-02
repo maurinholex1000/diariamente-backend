@@ -54,7 +54,6 @@ htmlcov/
 Thumbs.db
 
 # ===== Modelos de IA =====
-models/
 *.bin
 *.pt
 *.pth
