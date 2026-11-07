@@ -1,21 +1,30 @@
 from sqlalchemy.orm import Session
 from app.models.user import User
-from app.schemas.user import UserCreate
 
 
 class AuthService:
+
     @staticmethod
-    def create_user(db: Session, user_data: UserCreate) -> User:
+    def create_user(
+        db: Session,
+        *,
+        firebase_uid: str,
+        email: str,
+        username: str,
+        role: str = "patient",
+    ) -> User:
         db_user = User(
-            firebase_uid=user_data.firebase_uid,
-            email=user_data.email,
-            username=user_data.username,
-            role=user_data.role,
-            license_number=user_data.license_number,
+            firebase_uid=firebase_uid,
+            email=email,
+            username=username,
+            role=role,
+            license_number=None,
         )
+
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
+
         return db_user
 
     @staticmethod
@@ -30,9 +39,14 @@ class AuthService:
     def auto_assign_therapist(db: Session, patient: User):
         therapist = (
             db.query(User)
-            .filter(User.role == "therapist", User.is_active == True)  # noqa: E712
+            .filter(
+                User.role == "therapist",
+                User.is_active == True,  # noqa: E712
+            )
             .first()
         )
+
         if therapist:
             patient.therapist_id = therapist.id
             db.commit()
+            db.refresh(patient)

@@ -1,0 +1,41 @@
+
+# Entornos y dependencias locales
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+
+# Secretos
+.env
+.env.*
+!.env.example
+firebase-service-account.json
+serviceAccountKey.json
+*.pem
+*.key
+
+# Bases de datos locales
+*.db
+*.sqlite3
+
+# Git y herramientas
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Archivos generados
+reports/
+*.pdf
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Modelos descargados o entrenados
+*.bin
+*.pt
+*.pth
+*.onnx

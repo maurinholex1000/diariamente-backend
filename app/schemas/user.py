@@ -8,10 +8,10 @@ class UserBase(BaseModel):
     username: str
 
 
-class UserCreate(UserBase):
-    role: str = "patient"
-    license_number: Optional[str] = None
-    firebase_uid: str
+class UserCreate(BaseModel):
+    # El email y el UID se obtienen del token verificado de Firebase.
+    # El rol y la matrícula no los puede elegir el usuario al registrarse.
+    username: str
 
 
 class UserUpdate(BaseModel):
