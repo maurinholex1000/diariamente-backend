@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
 
@@ -11,6 +11,8 @@ class DiaryEntryBase(BaseModel):
 
 
 class DiaryEntryCreate(DiaryEntryBase):
+    client_entry_id: Optional[str] = Field(default=None, max_length=36)
+
     detected_emotion: Optional[str] = None
     detected_distortion: Optional[str] = None
     confidence_score: Optional[float] = None
@@ -18,11 +20,19 @@ class DiaryEntryCreate(DiaryEntryBase):
 
 class DiaryEntryResponse(DiaryEntryBase):
     id: int
+    client_entry_id: Optional[str] = None
+
     detected_emotion: Optional[str] = None
     detected_distortion: Optional[str] = None
     confidence_score: Optional[float] = None
+
     risk_score: Optional[float] = None
     flag_riesgo_suicida: Optional[bool] = None
+
+    crisis_notified: Optional[bool] = None
+    crisis_attended_at: Optional[datetime] = None
+    crisis_attended_by: Optional[int] = None
+
     created_at: datetime
 
     class Config:
